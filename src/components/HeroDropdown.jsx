@@ -4,7 +4,7 @@ import React from 'react';
 function HeroDropdown({ label, data }) {
   return (
     <>
-      <Dropdown label={label || 'No label'}>
+      <Dropdown label={label || 'No label'} >
         {data.map((datum) => {
           return (
             <Dropdown.Item id={datum.slug} key={datum.id}>

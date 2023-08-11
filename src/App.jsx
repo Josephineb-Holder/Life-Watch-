@@ -40,7 +40,7 @@ function App() {
       <div className="max-w7xl">
         {/* https://picsum.photos/200/300 */}
         <NavbarWithDropdown />
-        <HeroSearch counties={counties} />
+        <HeroSearch counties={counties} setHopitals={setHospitaldetails}/>
       
 
         <div className="max-w-7xl mx-auto px-6">
