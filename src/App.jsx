@@ -2,7 +2,9 @@
 import NavbarWithDropdown from './components/Navbar.jsx';
 import { Dropdown } from 'flowbite-react';
 import HospitalCard from './components/HospitalCard';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { getCounties } from '/utils/firebase.js';
+import HeroDropdown from './components/HeroDropdown.jsx';
 function App() {
   const [hospitals, setHospitals] = useState([
     'JFk',
@@ -69,23 +71,17 @@ function App() {
       county: 'Montserrado',
     },
   ]);
-  const [counties, setCounties] = useState([
-    'Montserrado',
-    'Grand Kru',
-    'Grand Cape Mount',
-    'Grand Gedeh',
-    'Lofa',
-    'Sinoe',
-    'Bong',
-    'Bomi',
-    'Grand Bassa',
-    'River Gee',
-    'Gbopolu',
-    'Margibi',
-    'Maryland',
-    'Grand Kru',
-    'Grand Kru',
-  ]);
+  const [counties, setCounties] = useState([]);
+
+  useEffect(() => {
+    async function loadData() {
+      const data = await getCounties();
+      console.log({ data });
+      setCounties(data);
+    }
+
+    loadData();
+  }, []);
   return (
     <>
       <div className="max-w7xl">
@@ -104,11 +100,7 @@ function App() {
         >
           <div className="w-full mz-auto absolute bottom-0">
             <div className="flex justify-center items-center place-items-center text-center gap-4 p-8 mt-10">
-              <Dropdown label="All">
-                {counties.map((counties) => {
-                  return <Dropdown.Item>{counties}</Dropdown.Item>;
-                })}
-              </Dropdown>
+              <HeroDropdown data={counties} label={'All'} />
 
               <Dropdown label="Hospitals/Clinics">
                 {hospitals.map((hospitals) => {

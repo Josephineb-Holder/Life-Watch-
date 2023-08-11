@@ -6,7 +6,9 @@ function HeroDropdown({label, data}){
     <>
     <Dropdown label={label || "No label"}>
     {data.map((datum)=>{
-      return<Dropdown.Item>{datum}</Dropdown.Item>
+      return<Dropdown.Item id={datum.slug} key={datum.id} >
+        {datum.name}
+      </Dropdown.Item>
     })}
     </Dropdown>
     
