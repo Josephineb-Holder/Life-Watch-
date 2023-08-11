@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-function HospitalCard({ name, location, numberOfBirth , numberOfDeaths}) {
+function HospitalCard({ name, location, birthRate, deathRate }) {
   return (
     <>
       <div className=" bg-[#102C57] text-white p-3 border-2 rounded-lg border-grey-500">
@@ -9,16 +9,14 @@ function HospitalCard({ name, location, numberOfBirth , numberOfDeaths}) {
           <div className="w-full ">
             <h4 className="text-md text-gray-700 font-md">Number of Birth:</h4>
             <p className="font-bold text-md text-center text-green-900">
-              {numberOfBirth || 0}
+              {birthRate || 0}
             </p>
           </div>
           <div className="w-full">
-            <h4 className="text-md text-gray-700 font-md">
-              Number of Death:
-            </h4>
+            <h4 className="text-md text-gray-700 font-md">Number of Death:</h4>
             <p className="font-bold text-md text-center text-green-900">
-                {numberOfDeaths || 0}
-              </p>
+              {deathRate || 0}
+            </p>
           </div>
         </div>
       </div>

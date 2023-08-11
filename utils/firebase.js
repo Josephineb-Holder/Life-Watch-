@@ -37,3 +37,19 @@ export async function getCounties() {
     return null;
   }
 }
+
+export async function getHopitals() {
+  try {
+    const hopitals = [];
+    const querySnapshot = await getDocs(collection(db, 'hopitals'));
+
+    querySnapshot.forEach((doc) => {
+      hopitals.push({ id: doc.id, ...doc.data() });
+    });
+
+    return hopitals;
+  } catch (e) {
+    console.log(e);
+    return [];
+  }
+}
