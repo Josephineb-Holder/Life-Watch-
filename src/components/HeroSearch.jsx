@@ -7,12 +7,16 @@ function HeroSearch({ counties, setHopitals }) {
   const [text, setText] = useState('');
 
   async function loadHopitalsData(e) {
-    e.preventDefault();
-    const data = await getHopitals(true, text);
-    const filteredData = data.filter((datum) =>
-      datum.name.toLower().caseincludes(text.toLocaleLowerCase())
-    );
-    setHopitals(filteredData);
+    const searchText = e.target.value;
+    // e.preventDefault();
+
+    if (searchText.length > 2) {
+      const data = await getHopitals(true);
+      const filteredData = data.filter((datum) =>
+        datum.name.toLowerCase().includes(searchText.toLocaleLowerCase())
+      );
+      setHopitals(filteredData);
+    }
   }
   return (
     <>
